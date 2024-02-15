@@ -12,6 +12,8 @@ let complexity = parseFloat(complexitySlider.value);
 let size = 1.7;
 let setColor = [255, 255, 255];
 
+const abs2 = Math.abs(2);
+
 setCanvasSize();
 
 const c = canvas.getContext("2d");
@@ -65,7 +67,7 @@ function inSet(num) {
   let z = math.complex(0, 0);
   for (let i = 0; i < iterationCount; i++) {
     z = math.add(math.multiply(z, z), num);
-    if (z.re >= Math.abs(2) || z.im >= Math.abs(2)) {
+    if (z.re >= abs2 || z.im >= abs2) {
       return false;
     }
   }
