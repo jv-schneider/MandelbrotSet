@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  background-color: #050001;
+  color: white;
+}
+
+div#sidebar {
+  z-index: 1;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 50vh;
+  padding: 15px;
+  margin-right: 5vw;
+  margin-left: 80vw;
+}
+
+#input-container {
+  margin: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+input {
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+p {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+output {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+button {
+  margin-top: 25px;
+  width: 75%;
+  height: 25px;
+  background: white;
+  border: none;
+  border-radius: 25px;
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 12.5%;
+  transition: 0.5s;
+}
+
+button:hover {
+  box-shadow: 0 0 15px white;
+}
+
+#warning {
+  margin-top: 40px;
+  color: red;
+  font-style: italic;
+  text-align: center;
+}
+
+canvas {
+  position: absolute;
+  aspect-ratio: 1/1;
+  margin-left: 2vw;
+}
