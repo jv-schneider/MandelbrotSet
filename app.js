@@ -14,19 +14,58 @@ let setColor = [255, 255, 255];
 
 const abs2 = Math.abs(2);
 
+// Initialize canvas
+
 setCanvasSize();
 
 const c = canvas.getContext("2d");
 c.translate(canvasWidth / 2, canvasHeight / 2);
 let canvasData = c.getImageData(0, 0, canvasWidth, canvasHeight);
 
-// Center cartesian coordinate system
+// Class introducing complex numbers
 
-// Drawing the Mandelbrot Set for the first time
+class Complex16 extends Float64Array {
+  constructor(...args) {
+    super(...args);
+
+    if (this.length !== 2) {
+      throw new Error("invalid complex number!");
+    }
+  }
+
+  set re(value) {
+    this[0] = value;
+  }
+  set im(value) {
+    this[1] = value;
+  }
+
+  get re() {
+    return this[0];
+  }
+  get im() {
+    return this[1];
+  }
+}
+
+// Functions for making calculations with complex numbers
+
+function add(z1, z2) {
+  return new Complex16([z1.re + z2.re, z1.im + z2.im]);
+}
+
+function mul(z1, z2) {
+  return new Complex16([
+    z1.re * z2.re - z1.im * z2.im,
+    z1.re * z2.im + z1.im * z2.re,
+  ]);
+}
+
+// Drawing the set on page load
 
 drawSet();
 
-// Functions to draw pixels more efficient
+// Function to draw pixels more efficient
 
 function drawPixel(x, y, r, g, b, a) {
   let index = (x + y * canvasWidth) * 4;
@@ -40,6 +79,8 @@ function updateCanvas() {
   c.putImageData(canvasData, 0, 0);
 }
 
+// Resize Mandelbrot Set based on canvas dimensions
+
 function setCanvasSize() {
   canvas.width = window.innerHeight * size;
   canvas.height = window.innerHeight * size;
@@ -47,10 +88,10 @@ function setCanvasSize() {
   canvasHeight = canvas.height;
 }
 
-// Resize Mandelbrot Set based on canvas dimensions
-
 function resizeCanvas() {
   setCanvasSize();
+
+  // Center cartesian coordinate system
 
   c.translate(canvasWidth / 2, canvasHeight / 2);
 
@@ -64,9 +105,11 @@ function resizeCanvas() {
 // Check if a number is contained in the Mandelbrot set
 
 function inSet(num) {
-  let z = math.complex(0, 0);
+  let z = new Complex16([0, 0]);
+
   for (let i = 0; i < iterationCount; i++) {
-    z = math.add(math.multiply(z, z), num);
+    z = add(mul(z, z), num);
+
     if (z.re >= abs2 || z.im >= abs2) {
       return false;
     }
@@ -78,12 +121,14 @@ function showPath(event) {
   // console.log(event.clientX, event.clientY);
 }
 
+// Draw the Mandelbrot Set on the Canvas
+
 function drawSet() {
   c.fillRect(-canvasWidth, -canvasHeight, canvasWidth * 2, canvasHeight * 2);
   canvasData = c.getImageData(0, 0, canvasWidth, canvasHeight);
   for (let i = -1; i < 1; i += complexity) {
     for (let j = -3; j < 1; j += complexity) {
-      if (inSet(math.complex(j, i))) {
+      if (inSet(new Complex16([j, i]))) {
         // console.log(j + " is part of the mandelbrot set");
         drawPixel(
           Math.floor((j * canvasWidth) / 4 + canvasWidth / 2),
@@ -99,6 +144,8 @@ function drawSet() {
   updateCanvas();
 }
 
+// Change parameters based on user input
+
 function generateSet() {
   if (
     iterationCount != parseInt(iterationCountSlider.value) ||
@@ -109,6 +156,8 @@ function generateSet() {
     drawSet();
   }
 }
+
+// React accordingly on user input
 
 window.addEventListener("resize", resizeCanvas, false);
 canvas.addEventListener("mouseover", showPath);
