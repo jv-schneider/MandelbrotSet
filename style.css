@@ -6,7 +6,7 @@ body {
   display: flex;
   align-items: center;
   font-family: monospace;
-  background-color: #050001;
+  background-color: #000;
   color: white;
 }
 
@@ -21,6 +21,8 @@ div#sidebar {
   padding: 15px;
   margin-right: 5vw;
   margin-left: 80vw;
+  min-height: 530px;
+  min-width: 280px;
 }
 
 #input-container {
@@ -79,4 +81,45 @@ canvas {
   position: absolute;
   aspect-ratio: 1/1;
   margin-left: 2vw;
+}
+
+#device-info {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    flex-direction: column;
+    justify-content: center;
+  }
+  canvas {
+    display: none;
+  }
+  div#sidebar {
+    display: none;
+  }
+
+  #device-info {
+    display: flex;
+    flex-direction: column;
+    margin: 0 25px;
+    width: 75vw;
+    align-items: center;
+    justify-content: start;
+    height: 75vh;
+  }
+
+  #device-info > p {
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 75px;
+    font-size: 25px;
+  }
+
+  #device-info > img {
+    width: 25vw;
+    min-width: 300px;
+  }
 }
