@@ -18,9 +18,9 @@ const abs2 = Math.abs(2);
 
 setCanvasSize();
 
-const c = canvas.getContext("2d");
-c.translate(canvasWidth / 2, canvasHeight / 2);
-let canvasData = c.getImageData(0, 0, canvasWidth, canvasHeight);
+const ctx = canvas.getContext("2d");
+ctx.translate(canvasWidth / 2, canvasHeight / 2);
+let canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
 
 // Class introducing complex numbers
 
@@ -76,7 +76,7 @@ function drawPixel(x, y, r, g, b, a) {
 }
 
 function updateCanvas() {
-  c.putImageData(canvasData, 0, 0);
+  ctx.putImageData(canvasData, 0, 0);
 }
 
 // Resize Mandelbrot Set based on canvas dimensions
@@ -93,7 +93,7 @@ function resizeCanvas() {
 
   // Center cartesian coordinate system
 
-  c.translate(canvasWidth / 2, canvasHeight / 2);
+  ctx.translate(canvasWidth / 2, canvasHeight / 2);
 
   drawSet();
 }
@@ -124,8 +124,8 @@ function showPath(event) {
 // Draw the Mandelbrot Set on the Canvas
 
 function drawSet() {
-  c.fillRect(-canvasWidth, -canvasHeight, canvasWidth * 2, canvasHeight * 2);
-  canvasData = c.getImageData(0, 0, canvasWidth, canvasHeight);
+  ctx.fillRect(-canvasWidth, -canvasHeight, canvasWidth * 2, canvasHeight * 2);
+  canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
   for (let i = -1; i < 1; i += complexity) {
     for (let j = -3; j < 1; j += complexity) {
       if (inSet(new Complex16([j, i]))) {

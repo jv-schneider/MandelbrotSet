@@ -1,13 +1,26 @@
+:root {
+  --text-color: #ffffff88;
+  --hover-color: #ffffff66;
+  --background-color: #000;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   padding: 0;
+  font-family: monospace;
+  background-color: var(--background-color);
+  color: white;
+}
+
+div#simulation {
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   align-items: center;
-  font-family: monospace;
-  background-color: #000;
-  color: white;
 }
 
 div#sidebar {
@@ -59,7 +72,7 @@ button {
   background: white;
   border: none;
   border-radius: 25px;
-  color: black;
+  color: var(--background-color);
   font-weight: bold;
   font-size: 15px;
   margin-left: 12.5%;
@@ -87,23 +100,90 @@ canvas {
   display: none;
 }
 
+footer {
+  width: 100%;
+  height: fit-content;
+  background-color: var(--background-color);
+  padding-top: 350px;
+  font-size: 40px;
+}
+
+.footer-icon > img {
+  width: 50px;
+}
+
+.footer-icon > img:hover {
+  color: var(--hover-color);
+}
+
+hr {
+  width: 90vw;
+  margin: 0 5vw;
+  border-width: 1px;
+  border-color: var(--hover-color);
+}
+
+#footer-link-container {
+  display: flex;
+  align-items: space-between;
+  gap: 75px;
+}
+
+#footer-link-container > a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.1s;
+  border: 2px solid var(--hover-color);
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+
+#footer-link-container > a:hover {
+  color: var(--hover-color);
+  text-decoration: none;
+}
+
+#copyright-text {
+  color: var(--text-color);
+  font-size: 16px;
+  vertical-align: center;
+  margin: 0;
+  width: 170px;
+  font-weight: lighter;
+}
+
+#footer-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 25px;
+  align-items: center;
+  width: 170px;
+}
+
+#footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 6vw;
+  padding: 30px 0;
+  background: var(--background-color);
+}
+
 @media screen and (max-width: 1200px) {
   body {
     flex-direction: column;
-    justify-content: center;
     overflow-y: scroll;
-  }
-  canvas {
-    display: none;
-  }
-  div#sidebar {
-    display: none;
+    justify-content: space-between;
   }
 
   #device-info {
     display: flex;
     flex-direction: column;
-    margin: 0 25px;
+    margin: 0 12.5vw;
     width: 75vw;
     align-items: center;
     justify-content: start;
@@ -112,7 +192,6 @@ canvas {
 
   #device-info > p {
     color: white;
-    font-family: monospace;
     font-weight: bold;
     text-align: center;
     margin-top: 75px;
@@ -123,5 +202,13 @@ canvas {
   #device-info > img {
     width: 25vw;
     min-width: 300px;
+  }
+
+  footer {
+    padding-top: 0;
+  }
+
+  div#simulation {
+    display: none;
   }
 }
