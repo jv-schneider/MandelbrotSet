@@ -101,24 +101,29 @@ canvas {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: fit-content;
   background-color: var(--background-color);
-  padding-top: 350px;
-  font-size: 40px;
+  font-family: sans-serif;
+  margin-top: 350px;
 }
 
-.footer-icon > img {
-  width: 50px;
+.footer-icon > svg {
+  transition: 0.25s;
 }
 
-.footer-icon > img:hover {
-  color: var(--hover-color);
+.footer-icon > svg:hover {
+  transform: scale(1.05);
 }
 
 hr {
   width: 90vw;
+  max-width: 1080px;
   margin: 0 5vw;
+  opacity: 0.25;
   border-width: 1px;
   border-color: var(--hover-color);
 }
@@ -138,11 +143,12 @@ hr {
   border: 2px solid var(--hover-color);
   border-radius: 8px;
   padding: 10px 15px;
+  transition: 0.3s;
 }
 
 #footer-link-container > a:hover {
-  color: var(--hover-color);
   text-decoration: none;
+  color: var(--hover-color);
 }
 
 #copyright-text {
@@ -169,8 +175,10 @@ hr {
   justify-content: space-between;
   align-items: center;
   margin: 0 6vw;
-  padding: 30px 0;
+  padding: 40px 0;
   background: var(--background-color);
+  width: 88vw;
+  max-width: 900px;
   gap: 50px;
 }
 
