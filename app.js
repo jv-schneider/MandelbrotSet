@@ -1,3 +1,6 @@
+// JavaScript Code 15.02.2024, Jasper Schneider
+// A simulation of the famous Mandelbrot Set
+
 // Starting Conditions
 
 const canvas = document.querySelector("canvas");
