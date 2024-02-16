@@ -217,6 +217,11 @@ hr {
     padding-top: 50px;
   }
 
+  #footer-container {
+    margin: 0 10vw;
+    width: 80vw;
+  }
+
   div#simulation {
     display: none;
   }
