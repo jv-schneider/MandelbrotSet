@@ -14,6 +14,7 @@ let iterationCount = parseInt(iterationCountSlider.value);
 let complexity = parseFloat(complexitySlider.value);
 let size = 1.7;
 let setColor = [255, 255, 255];
+let setStates = {};
 
 const abs2 = Math.abs(2);
 
@@ -105,7 +106,20 @@ function resizeCanvas() {
 //   c.fillRect(x, -y, 1, 1);
 // }
 
+// Save important canvasData in an object
+// => Browser doesnt have to calculate it again later
+
+function saveStates() {
+  if (
+    (complexity < 0.01 || iterationCount > 150) &&
+    !Object.values(setStates).includes(canvasData)
+  ) {
+    setStates[[complexity, iterationCount]] = canvasData;
+  }
+}
+
 // Check if a number is contained in the Mandelbrot set
+// z=z^2+c
 
 function inSet(num) {
   let z = new Complex16([0, 0]);
@@ -127,27 +141,41 @@ function showPath(event) {
 // Draw the Mandelbrot Set on the Canvas
 
 function drawSet() {
+  // Reset Image Data
+
   ctx.fillRect(-canvasWidth, -canvasHeight, canvasWidth * 2, canvasHeight * 2);
   canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-  for (let i = -1; i < 1; i += complexity) {
-    for (let j = -3; j < 1; j += complexity) {
-      if (inSet(new Complex16([j, i]))) {
-        // console.log(j + " is part of the mandelbrot set");
-        drawPixel(
-          Math.floor((j * canvasWidth) / 4 + canvasWidth / 2),
-          Math.floor((i * canvasHeight) / 4 + canvasWidth / 2),
-          setColor[0],
-          setColor[1],
-          setColor[2],
-          255
-        );
+
+  // Check if the same Mandelbrot Set has been generated before
+  // => Dont calculate it again
+
+  if (setStates.hasOwnProperty([complexity, iterationCount])) {
+    canvasData = setStates[[complexity, iterationCount]];
+  } else {
+    // Calculate a new Mandelbrot Set
+
+    for (let i = -1; i < 1; i += complexity) {
+      for (let j = -3; j < 1; j += complexity) {
+        if (inSet(new Complex16([j, i]))) {
+          // console.log(j + " is part of the mandelbrot set");
+          drawPixel(
+            Math.floor((j * canvasWidth) / 4 + canvasWidth / 2),
+            Math.floor((i * canvasHeight) / 4 + canvasWidth / 2),
+            setColor[0],
+            setColor[1],
+            setColor[2],
+            255
+          );
+        }
       }
     }
   }
+
   updateCanvas();
+  saveStates();
 }
 
-// Change parameters based on user input
+// Change simulation parameters based on user input
 
 function generateSet() {
   if (
