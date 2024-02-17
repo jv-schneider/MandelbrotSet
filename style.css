@@ -30,12 +30,29 @@ div#sidebar {
   flex-direction: column;
   border: 2px solid white;
   border-radius: 10px;
-  height: 50vh;
+  height: 55vh;
   padding: 15px;
   margin-right: 5vw;
   margin-left: 80vw;
   min-height: 530px;
   min-width: 280px;
+}
+
+button:hover {
+  box-shadow: 0 0 15px white;
+}
+
+#checkbox-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 12px;
+}
+
+#checkbox-input > p {
+  width: 200%;
 }
 
 #input-container {
@@ -79,10 +96,6 @@ button {
   transition: 0.5s;
 }
 
-button:hover {
-  box-shadow: 0 0 15px white;
-}
-
 #warning {
   margin-top: 40px;
   color: red;
@@ -116,14 +129,14 @@ footer {
 }
 
 .footer-icon > svg:hover {
-  transform: scale(1.05);
+  fill: var(--hover-color);
 }
 
 hr {
   width: 90vw;
   max-width: 1080px;
   margin: 0 5vw;
-  opacity: 0.25;
+  opacity: 0.5;
   border-width: 1px;
   border-color: var(--hover-color);
 }
