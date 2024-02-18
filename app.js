@@ -136,54 +136,34 @@ function inSet(num) {
   return true;
 }
 
-// function getColor(num) {
-//   let z = 0;
-//   let counter = 0;
-
-//   for (let i = 0; i < iterationCount; i++) {
-//     z = add(mul(z, z), num);
-
-//     if (z.re > 100 || z.im > 100) {
-//       break;
-//     }
-//     counter++;
-//   }
-//   if (counter > 100) {
-//     return [0, 255, 0];
-//   } else {
-//     return [255, 0, 0];
-//   }
-// }
-
-// function showPath(event) {
-//   let point = [
-//     (5 * (event.x - canvasWidth / 2)) / canvasWidth,
-//     (5 * -(event.y - window.innerHeight / 2)) / canvasHeight,
-//   ];
-
-//   let z = new Complex16([0, 0]);
-//   let c = new Complex16([point[0], point[1]]);
-//   let path = [];
-
-//   for (let i = 0; i < iterationCount; i++) {
-//     z = add(mul(z, z), c);
-//     path.push(z);
-//   }
-//   for (let i = 0; i < path.length - 1; i++) {
-//     ctx.beginPath();
-//     ctx.moveTo(
-//       Math.floor((point[0] * canvasWidth) / 5 + canvasWidth / 2),
-//       Math.floor((point[1] * canvasHeight) / 5 + canvasWidth / 2)
-//     );
-//     ctx.lineTo(
-//       Math.floor((path[i].re * canvasWidth) / 5 + canvasWidth / 2),
-//       Math.floor((path[i].im * canvasHeight) / 5 + canvasWidth / 2)
-//     );
-//   }
-//   ctx.strokeStyle = "red";
-//   ctx.lineWidth = "5px";
-//   ctx.stroke();
-// }
+function showPath(event) {
+  // let point = [
+  //   (5 * (event.x - canvasWidth / 2)) / canvasWidth,
+  //   (5 * -(event.y - window.innerHeight / 2)) / canvasHeight,
+  // ];
+  // let z = new Complex16([0, 0]);
+  // let c = new Complex16([point[0], point[1]]);
+  // let path = [];
+  // for (let i = 0; i < iterationCount; i++) {
+  //   z = add(mul(z, z), c);
+  //   path.push(z);
+  // }
+  // for (let i = 0; i < path.length - 1; i++) {
+  //   ctx.beginPath();
+  //   ctx.moveTo(
+  //     (point[0] * canvasWidth) / 5 - 40,
+  //     (-point[1] * canvasHeight) / 5
+  //   );
+  //   ctx.lineTo(
+  //     (path[i].re * canvasWidth) / 5 - 40,
+  //     (path[i].im * canvasHeight) / 5
+  //   );
+  // }
+  // ctx.fillStyle = "red";
+  // ctx.strokeStyle = "red";
+  // ctx.lineWidth = "5px";
+  // ctx.stroke();
+}
 
 // Draw the Mandelbrot Set on the Canvas
 
@@ -213,19 +193,6 @@ function drawSet() {
             setColor[2],
             255
           );
-          // } else {
-          //   if (colorSim) {
-          //     let pixelColor = getColor(new Complex16([j, i]));
-          //     drawPixel(
-          //       Math.floor((j * canvasWidth) / 4 + canvasWidth / 2),
-          //       Math.floor((i * canvasHeight) / 4 + canvasWidth / 2),
-          //       pixelColor[0],
-          //       pixelColor[1],
-          //       pixelColor[2],
-          //       255
-          //     );
-          //     console.log(pixelColor);
-          //   }
         }
       }
     }
