@@ -3,7 +3,7 @@
 <br/>
 
 **A visual representation and simulation of the Mandelbrot Set, one of the most famous fractals in Mathematics.**\
-**Try it yourself:** https://jv-schneider.github.io/mandelbrotSet 
+**Try it yourself:** [https://jv-schneider.github.io/mandelbrotSet ](https://jv-schneider.github.io/mandelbrot-set/)
 
 <br/>
 
